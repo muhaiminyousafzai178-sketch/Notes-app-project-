@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { X } from 'lucide';
+
 
 
 const App = () => {
@@ -19,6 +19,11 @@ const App = () => {
     settitle("");
     setDetails("");
   };
+   const deletenote = (idx)=>{
+    const copyTask =[...Task];
+    copyTask .splice (idx,1)
+    setTask(copyTask)
+   }
 
   return (
     <div className="h-200 text-white bg-black lg:flex ">
@@ -29,7 +34,7 @@ const App = () => {
         className="flex p-15 pt-10 gap-5  w-150  flex-col items-start lg:w1/2  "
       >
         <h1 className="text-4xl font-bold">Add Notes</h1>
-        {/* headin wala input */}
+        
         <input
           type="text"
           placeholder="Enter notes heading"
@@ -39,7 +44,7 @@ const App = () => {
             settitle(e.target.value);
           }}
         />
-        {/* details wala input */}
+        
         <textarea
           type="text"
           placeholder="Write Details"
@@ -63,7 +68,10 @@ const App = () => {
                 key={idx}
                 className="relative h-52 p-5   w-42 rounded-xl text-black bg-[url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF_1sp-G-5Or_Wvr4m2788FPM-CneleVyVjQ&s')] leading-tight "
               >
-                <h1><X /></h1>
+              
+                <button onClick={()=>{
+                  deletenote (idx)
+                }} className="abslout top-5 right-5 ml-30 bg-red-500 w-5 p-1 rounded-3xl cursor-pointer font-bold text-white active:scale-95 ">X</button>
                 <h1 className="font-bold p-2">{elem.title} </h1>
                 <p className=" p-2"> {elem.details} </p>
 
